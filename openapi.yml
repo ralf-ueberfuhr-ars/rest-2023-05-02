@@ -60,13 +60,7 @@ paths:
         - customers
       summary: Read a single customer
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         200:
           description: Customer was found
@@ -82,13 +76,7 @@ paths:
         - customers
       summary: Delete a single customer
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         204:
           description: Customer was deleted successfully
@@ -102,13 +90,7 @@ paths:
         - customers
       summary: Read the address of the customer
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         200:
           description: Customer address was found
@@ -126,13 +108,7 @@ paths:
         - customers
       summary: Assign address to the customer
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       requestBody:
         content:
           application/json:
@@ -153,13 +129,7 @@ paths:
         - paypal
       summary: Read PayPal payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         200:
           description: PayPal payment data was found
@@ -178,13 +148,7 @@ paths:
         - paypal
       summary: Assign PayPal payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       requestBody:
         content:
           application/json:
@@ -204,13 +168,7 @@ paths:
         - paypal
       summary: Delete PayPal payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         204:
           description: PayPal payment data was successfully deleted
@@ -224,13 +182,7 @@ paths:
         - creditcard
       summary: Read credit card payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         200:
           description: Credit card payment data was found
@@ -249,13 +201,7 @@ paths:
         - creditcard
       summary: Assign Credit card payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       requestBody:
         content:
           application/json:
@@ -275,13 +221,7 @@ paths:
         - creditcard
       summary: Delete credit card payment data
       parameters:
-        - name: id
-          in: path
-          description: The id of the customer
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: "#/components/parameters/customerId"
       responses:
         204:
           description: Credit card payment data was successfully deleted
