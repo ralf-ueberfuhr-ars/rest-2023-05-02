@@ -80,3 +80,51 @@ Die Kommunikation untereinander erfordert ein klares Schnittstellen-Design.
  - Content Negotiation
    - HTTP `Accept`-Header mit Wunschliste
    - HTTP `Content-Type`-Header zur Beschreibung des Body
+- Guidelines
+    - HUK HSA Makroarchitektur
+    - Beispiel: [Zalando API Guidelines](https://opensource.zalando.com/restful-api-guidelines/#)
+
+### Beschreibung
+
+- [Standardisiertes Format (OpenAPI) + Tools (Swagger)](https://swagger.io/docs/specification/about/)
+  - Austauschformat zwischen Editoren
+
+### Tooling
+
+- Generatoren
+    - OpenAPI -> Code (Swagger CodeGen)
+    - Code -> OpenAPI (Framework-spezifisch)
+- Editoren
+  - [Swagger Editor](https://editor.swagger.io/)
+  - IntelliJ hat eingebauten Editor
+- Testen
+  - Swagger UI (manuelles Testen)
+    - Integriert im Editor
+    - Kann über Dependency auch in Quarkus/Spring-Boot-App integriert werden
+  - IntelliJ HTTP Client (manuelles Testen)
+    - zu finden im Menü `Tools`
+    - Erstellen und Versenden von HTTP-Anfragen
+    - Speichern in IntelliJ-spezifischen Dateien
+  - Postman (manuelles + automatisiertes Testen)
+    - Import von OpenAPI -> Generierung von Request Sample
+    - Verwaltung von Umgebungen (Hosts, Variablen...)
+    - Implementieren von Tests (JS)
+    - Automatisierung möglich (Newman)
+    - [Tutorial](https://www.testautomatisierung.org/rest-api-tests-mit-postman/)
+  - `curl` (Kommandozeilenbefehl, auch für Automatisierung)
+    - ebenfalls als Austauschformat zwischen den Tools geeignet
+      (Swagger UI, PostMan, IntelliJ HTTP Client)
+
+## Weiterführende Themen
+
+- [Patterns: BFF, API Gateway](https://www.manuelkruisz.com/blog/posts/api-gateway-vs-bff)
+- [Hypermedia APIs](https://www.mscharhag.com/api-design/hypermedia-rest)
+  - [HAL](https://stateless.group/hal_specification.html)
+    - [HAL Explorer](https://toedter.github.io/hal-explorer/release/reference-doc/)
+    - [HAL9000 (kleine Anekdote drumherum)](https://de.wikipedia.org/wiki/HAL_9000)
+    - [Quarkus-Support](https://quarkus.io/guides/resteasy#links)
+- [RFC-7807: ProblemDetails](https://www.linkedin.com/pulse/rfc-7807-error-handling-standard-apis-david-rold%C3%A1n-mart%C3%ADnez/)
+- Andere Arten von Webservices
+  - [SOAP (W3C)](https://www.tutorialspoint.com/soap/soap_examples.htm)
+  - [GraphQL](https://blog.logrocket.com/graphql-vs-rest-api-why-you-shouldnt-use-graphql)
+    - [Spring Boot Sample](https://github.com/ueberfuhr-trainings/spring-features/blob/main/docs/graphql/index.md)
