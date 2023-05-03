@@ -1,11 +1,8 @@
 openapi: 3.0.1
 info:
-  title: Online Shop API
   description: Manage customers and products and sell the products to the customers
   version: 1.0.0
-servers:
-  - url: http://localhost:8080/api/v1
-  - url: https://localhost:8080/api/v1
+  title: Online Shop API
 tags:
   - name: customers
     description: Manage Customers
@@ -13,6 +10,9 @@ tags:
     description: Manage PayPal payment data
   - name: creditcard
     description: Manage credit card payment data
+servers:
+  - url: http://localhost:8080/api/v1
+  - url: https://localhost:8080/api/v1
 paths:
   /customers:
     get:
