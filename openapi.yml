@@ -1,15 +1,15 @@
 openapi: 3.0.1
 info:
-  description: Manage customers and products and sell the products to the customers
-  version: 1.0.0
-  title: Online Shop API
+  description: "Manage customers and products and sell the products to the customers"
+  version: "1.0.0"
+  title: "Online Shop API"
 tags:
-  - name: customers
-    description: Manage Customers
-  - name: paypal
-    description: Manage PayPal payment data
-  - name: creditcard
-    description: Manage credit card payment data
+  - name: "customers"
+    description: "Manage Customers"
+  - name: "paypal"
+    description: "Manage PayPal payment data"
+  - name: "creditcard"
+    description: "Manage credit card payment data"
 servers:
   - url: http://localhost:8080/api/v1
   - url: https://localhost:8080/api/v1
@@ -17,11 +17,11 @@ paths:
   /customers:
     get:
       tags:
-        - customers
-      summary: Read all customers
+        - "customers"
+      summary: "Read all customers"
       responses:
         200:
-          description: Customers were read successfully
+          description: "Customers were read successfully"
           content:
             application/json:
               schema:
@@ -30,8 +30,8 @@ paths:
                   $ref: '#/components/schemas/Customer'
     post:
       tags:
-        - customers
-      summary: Create a customer
+        - "customers"
+      summary: "Create a customer"
       requestBody:
         content:
           application/json:
@@ -40,10 +40,10 @@ paths:
         required: true
       responses:
         201:
-          description: Customer was created successfully
+          description: "Customer was created successfully"
           headers:
             Location:
-              description: URL to the newly created customer
+              description: "URL to the newly created customer"
               schema:
                 type: string
           content:
@@ -51,49 +51,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/Customer'
         400:
-          description: Customer is invalid
-          content: {}
-      x-codegen-request-body-name: newCustomer
+          description: "Customer is invalid"
   /customers/{id}:
     get:
       tags:
-        - customers
-      summary: Read a single customer
+        - "customers"
+      summary: "Read a single customer"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         200:
-          description: Customer was found
+          description: "Customer was found"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
         404:
-          description: Customer could not be found
-          content: {}
+          description: "Customer could not be found"
     delete:
       tags:
-        - customers
-      summary: Delete a single customer
+        - "customers"
+      summary: "Delete a single customer"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         204:
-          description: Customer was deleted successfully
-          content: {}
+          description: "Customer was deleted successfully"
         404:
-          description: Customer not be found
-          content: {}
+          description: "Customer not be found"
   /customers/{id}/address:
     get:
       tags:
-        - customers
-      summary: Read the address of the customer
+        - "customers"
+      summary: "Read the address of the customer"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         200:
-          description: Customer address was found
+          description: "Customer address was found"
           content:
             application/json:
               schema:
@@ -102,11 +97,10 @@ paths:
                   $ref: '#/components/schemas/Address'
         404:
           description: Customer could not be found or does not have any address assigned
-          content: {}
     put:
       tags:
-        - customers
-      summary: Assign address to the customer
+        - "customers"
+      summary: "Assign address to the customer"
       parameters:
         - $ref: "#/components/parameters/customerId"
       requestBody:
@@ -117,22 +111,19 @@ paths:
         required: true
       responses:
         204:
-          description: Address was successfully assigned
-          content: {}
+          description: "Address was successfully assigned"
         404:
-          description: Customer could not be found
-          content: {}
-      x-codegen-request-body-name: newAddress
+          description: "Customer could not be found"
   /customers/{id}/payments/paypal:
     get:
       tags:
-        - paypal
-      summary: Read PayPal payment data
+        - "paypal"
+      summary: "Read PayPal payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         200:
-          description: PayPal payment data was found
+          description: "PayPal payment data was found"
           content:
             application/json:
               schema:
@@ -140,13 +131,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/PayPal'
         404:
-          description: Customer could not be found or does not have any payment data
-            assigned
-          content: {}
+          description: "Customer could not be found or does not have any payment data assigned"
     put:
       tags:
-        - paypal
-      summary: Assign PayPal payment data
+        - "paypal"
+      summary: "Assign PayPal payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       requestBody:
@@ -157,35 +146,30 @@ paths:
         required: true
       responses:
         204:
-          description: PayPal payment data was successfully assigned
-          content: {}
+          description: "PayPal payment data was successfully assigned"
         404:
-          description: Customer could not be found
-          content: {}
-      x-codegen-request-body-name: newPayPal
+          description: "Customer could not be found"
     delete:
       tags:
-        - paypal
-      summary: Delete PayPal payment data
+        - "paypal"
+      summary: "Delete PayPal payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         204:
-          description: PayPal payment data was successfully deleted
-          content: {}
+          description: "PayPal payment data was successfully deleted"
         404:
-          description: Customer could not be found
-          content: {}
+          description: "Customer could not be found"
   /customers/{id}/payments/creditcard:
     get:
       tags:
-        - creditcard
-      summary: Read credit card payment data
+        - "creditcard"
+      summary: "Read credit card payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         200:
-          description: Credit card payment data was found
+          description: "Credit card payment data was found"
           content:
             application/json:
               schema:
@@ -193,13 +177,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/CreditCard'
         404:
-          description: Customer could not be found or does not have any payment data
-            assigned
-          content: {}
+          description: "Customer could not be found or does not have any payment data assigned"
     put:
       tags:
-        - creditcard
-      summary: Assign Credit card payment data
+        - "creditcard"
+      summary: "Assign Credit card payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       requestBody:
@@ -210,25 +192,20 @@ paths:
         required: true
       responses:
         204:
-          description: Credit card payment data was successfully assigned
-          content: {}
+          description: "Credit card payment data was successfully assigned"
         404:
-          description: Customer could not be found
-          content: {}
-      x-codegen-request-body-name: newCreditCard
+          description: "Customer could not be found"
     delete:
       tags:
-        - creditcard
-      summary: Delete credit card payment data
+        - "creditcard"
+      summary: "Delete credit card payment data"
       parameters:
         - $ref: "#/components/parameters/customerId"
       responses:
         204:
-          description: Credit card payment data was successfully deleted
-          content: {}
+          description: "Credit card payment data was successfully deleted"
         404:
-          description: Customer could not be found
-          content: {}
+          description: "Customer could not be found"
 components:
   schemas:
     Customer:
@@ -291,9 +268,9 @@ components:
           type: string
   parameters:
     customerId:
-      name: id
-      in: path
-      description: The id of the customer
+      in: "path"
+      name: "id"
+      description: "The id of the customer"
       required: true
       schema:
         type: string
