@@ -80,6 +80,8 @@ Die Kommunikation untereinander erfordert ein klares Schnittstellen-Design.
  - Content Negotiation
    - HTTP `Accept`-Header mit Wunschliste
    - HTTP `Content-Type`-Header zur Beschreibung des Body
+- Versionierung (Semantic Versioning) über URL
+  - `/api/v1/customers` vs `/api/v2/customers`
 - Guidelines
     - HUK HSA Makroarchitektur
     - Beispiel: [Zalando API Guidelines](https://opensource.zalando.com/restful-api-guidelines/#)
