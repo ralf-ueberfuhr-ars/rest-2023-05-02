@@ -88,8 +88,9 @@ Die Kommunikation untereinander erfordert ein klares Schnittstellen-Design.
 
 ### Beschreibung
 
-- [Standardisiertes Format (OpenAPI) + Tools (Swagger)](https://swagger.io/docs/specification/about/)
+- [Standardisiertes Format (OpenAPI 3) + Tools (Swagger)](https://swagger.io/docs/specification/about/)
   - Austauschformat zwischen Editoren
+  - [Swagger 2](https://swagger.io/docs/specification/2-0/basic-structure/)
 
 ### Tooling
 
