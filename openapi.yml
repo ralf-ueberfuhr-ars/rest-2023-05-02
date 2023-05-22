@@ -45,7 +45,7 @@ paths:
           schema:
             $ref: "#/definitions/Customer"
       responses:
-        "201":
+        201:
           description: "Customer was created successfully"
           schema:
             $ref: "#/definitions/Customer"
@@ -53,7 +53,7 @@ paths:
             "Location":
               type: "string"
               description: URL to the newly created customer
-        "400":
+        400:
           description: "Customer is invalid"
   /customers/{id}:
     get:
@@ -65,11 +65,11 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "200":
+        200:
           description: "Customer was found"
           schema:
             $ref: "#/definitions/Customer"
-        "404":
+        404:
           description: "Customer could not be found"
     delete:
       tags:
@@ -78,9 +78,9 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "204":
+        204:
           description: "Customer was deleted successfully"
-        "404":
+        404:
           description: "Customer not be found"
   /customers/{id}/address:
     get:
@@ -92,13 +92,13 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "200":
+        200:
           description: "Customer address was found"
           schema:
             type: array
             items:
               $ref: "#/definitions/Address"
-        "404":
+        404:
           description: "Customer could not be found or does not have any address assigned"
     put:
       tags:
@@ -114,9 +114,9 @@ paths:
           schema:
             $ref: "#/definitions/Address"
       responses:
-        "204":
+        204:
           description: "Address was successfully assigned"
-        "404":
+        404:
           description: "Customer could not be found"
   /customers/{id}/payments/paypal:
     get:
@@ -128,13 +128,13 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "200":
+        200:
           description: "PayPal payment data was found"
           schema:
             type: array
             items:
               $ref: "#/definitions/PayPal"
-        "404":
+        404:
           description: "Customer could not be found or does not have any payment data assigned"
     put:
       tags:
@@ -150,9 +150,9 @@ paths:
           schema:
             $ref: "#/definitions/PayPal"
       responses:
-        "204":
+        204:
           description: "PayPal payment data was successfully assigned"
-        "404":
+        404:
           description: "Customer could not be found"
     delete:
       tags:
@@ -161,9 +161,9 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "204":
+        204:
           description: "PayPal payment data was successfully deleted"
-        "404":
+        404:
           description: "Customer could not be found"
   /customers/{id}/payments/creditcard:
     get:
@@ -175,13 +175,13 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "200":
+        200:
           description: "Credit card payment data was found"
           schema:
             type: array
             items:
               $ref: "#/definitions/CreditCard"
-        "404":
+        404:
           description: "Customer could not be found or does not have any payment data assigned"
     put:
       tags:
@@ -197,9 +197,9 @@ paths:
           schema:
             $ref: "#/definitions/CreditCard"
       responses:
-        "204":
+        204:
           description: "Credit card payment data was successfully assigned"
-        "404":
+        404:
           description: "Customer could not be found"
     delete:
       tags:
@@ -208,9 +208,9 @@ paths:
       parameters:
         - $ref: "#/parameters/customerId"
       responses:
-        "204":
+        204:
           description: "Credit card payment data was successfully deleted"
-        "404":
+        404:
           description: "Customer could not be found"
 definitions:
   Customer:
