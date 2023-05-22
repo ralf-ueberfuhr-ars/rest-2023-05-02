@@ -1,281 +1,285 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: "Manage customers and products and sell the products to the customers"
-  version: "1.0.0"
-  title: "Online Shop API"
-host: "localhost:8080"
-basePath: "/api/v1"
+  description: Manage customers and products and sell the products to the customers
+  version: 1.0.0
+  title: Online Shop API
+host: localhost:8080
+basePath: /api/v1
 tags:
-  - name: "customers"
-    description: "Manage Customers"
-  - name: "paypal"
-    description: "Manage PayPal payment data"
-  - name: "creditcard"
-    description: "Manage credit card payment data"
+  - name: customers
+    description: Manage Customers
+  - name: paypal
+    description: Manage PayPal payment data
+  - name: creditcard
+    description: Manage credit card payment data
 schemes:
-  - "http"
-  - "https"
+  - http
+  - https
 paths:
   /customers:
     get:
       tags:
-        - "customers"
-      summary: "Read all customers"
+        - customers
+      summary: Read all customers
       produces:
-        - "application/json"
+        - application/json
       responses:
-        "200":
-          description: "Customers were read successfully"
+        '200':
+          description: Customers were read successfully
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Customer"
+              $ref: '#/definitions/Customer'
     post:
       tags:
-        - "customers"
-      summary: "Create a customer"
+        - customers
+      summary: Create a customer
       consumes:
-        - "application/json"
+        - application/json
       produces:
-        - "application/json"
+        - application/json
       parameters:
-        - in: "body"
-          name: "newCustomer"
+        - in: body
+          name: newCustomer
           required: true
           schema:
-            $ref: "#/definitions/Customer"
+            $ref: '#/definitions/Customer'
       responses:
-        201:
-          description: "Customer was created successfully"
+        '201':
+          description: Customer was created successfully
           schema:
-            $ref: "#/definitions/Customer"
+            $ref: '#/definitions/Customer'
           headers:
-            "Location":
-              type: "string"
+            Location:
+              type: string
               description: URL to the newly created customer
-        400:
-          description: "Customer is invalid"
+        '400':
+          description: Customer is invalid
   /customers/{id}:
     get:
       tags:
-        - "customers"
-      summary: "Read a single customer"
+        - customers
+      summary: Read a single customer
       produces:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        200:
-          description: "Customer was found"
+        '200':
+          description: Customer was found
           schema:
-            $ref: "#/definitions/Customer"
-        404:
-          description: "Customer could not be found"
+            $ref: '#/definitions/Customer'
+        '404':
+          description: Customer could not be found
     delete:
       tags:
-        - "customers"
-      summary: "Delete a single customer"
+        - customers
+      summary: Delete a single customer
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        204:
-          description: "Customer was deleted successfully"
-        404:
-          description: "Customer not be found"
+        '204':
+          description: Customer was deleted successfully
+        '404':
+          description: Customer not be found
   /customers/{id}/address:
     get:
       tags:
-        - "customers"
-      summary: "Read the address of the customer"
+        - customers
+      summary: Read the address of the customer
       produces:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        200:
-          description: "Customer address was found"
+        '200':
+          description: Customer address was found
           schema:
             type: array
             items:
-              $ref: "#/definitions/Address"
-        404:
-          description: "Customer could not be found or does not have any address assigned"
+              $ref: '#/definitions/Address'
+        '404':
+          description: Customer could not be found or does not have any address assigned
     put:
       tags:
-        - "customers"
-      summary: "Assign address to the customer"
+        - customers
+      summary: Assign address to the customer
       consumes:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
-        - in: "body"
-          name: "newAddress"
+        - $ref: '#/parameters/customerId'
+        - in: body
+          name: newAddress
           required: true
           schema:
-            $ref: "#/definitions/Address"
+            $ref: '#/definitions/Address'
       responses:
-        204:
-          description: "Address was successfully assigned"
-        404:
-          description: "Customer could not be found"
+        '204':
+          description: Address was successfully assigned
+        '404':
+          description: Customer could not be found
   /customers/{id}/payments/paypal:
     get:
       tags:
-        - "paypal"
-      summary: "Read PayPal payment data"
+        - paypal
+      summary: Read PayPal payment data
       produces:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        200:
-          description: "PayPal payment data was found"
+        '200':
+          description: PayPal payment data was found
           schema:
             type: array
             items:
-              $ref: "#/definitions/PayPal"
-        404:
-          description: "Customer could not be found or does not have any payment data assigned"
+              $ref: '#/definitions/PayPal'
+        '404':
+          description: >-
+            Customer could not be found or does not have any payment data
+            assigned
     put:
       tags:
-        - "paypal"
-      summary: "Assign PayPal payment data"
+        - paypal
+      summary: Assign PayPal payment data
       consumes:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
-        - in: "body"
-          name: "newPayPal"
+        - $ref: '#/parameters/customerId'
+        - in: body
+          name: newPayPal
           required: true
           schema:
-            $ref: "#/definitions/PayPal"
+            $ref: '#/definitions/PayPal'
       responses:
-        204:
-          description: "PayPal payment data was successfully assigned"
-        404:
-          description: "Customer could not be found"
+        '204':
+          description: PayPal payment data was successfully assigned
+        '404':
+          description: Customer could not be found
     delete:
       tags:
-        - "paypal"
-      summary: "Delete PayPal payment data"
+        - paypal
+      summary: Delete PayPal payment data
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        204:
-          description: "PayPal payment data was successfully deleted"
-        404:
-          description: "Customer could not be found"
+        '204':
+          description: PayPal payment data was successfully deleted
+        '404':
+          description: Customer could not be found
   /customers/{id}/payments/creditcard:
     get:
       tags:
-        - "creditcard"
-      summary: "Read credit card payment data"
+        - creditcard
+      summary: Read credit card payment data
       produces:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        200:
-          description: "Credit card payment data was found"
+        '200':
+          description: Credit card payment data was found
           schema:
             type: array
             items:
-              $ref: "#/definitions/CreditCard"
-        404:
-          description: "Customer could not be found or does not have any payment data assigned"
+              $ref: '#/definitions/CreditCard'
+        '404':
+          description: >-
+            Customer could not be found or does not have any payment data
+            assigned
     put:
       tags:
-        - "creditcard"
-      summary: "Assign Credit card payment data"
+        - creditcard
+      summary: Assign Credit card payment data
       consumes:
-        - "application/json"
+        - application/json
       parameters:
-        - $ref: "#/parameters/customerId"
-        - in: "body"
-          name: "newCreditCard"
+        - $ref: '#/parameters/customerId'
+        - in: body
+          name: newCreditCard
           required: true
           schema:
-            $ref: "#/definitions/CreditCard"
+            $ref: '#/definitions/CreditCard'
       responses:
-        204:
-          description: "Credit card payment data was successfully assigned"
-        404:
-          description: "Customer could not be found"
+        '204':
+          description: Credit card payment data was successfully assigned
+        '404':
+          description: Customer could not be found
     delete:
       tags:
-        - "creditcard"
-      summary: "Delete credit card payment data"
+        - creditcard
+      summary: Delete credit card payment data
       parameters:
-        - $ref: "#/parameters/customerId"
+        - $ref: '#/parameters/customerId'
       responses:
-        204:
-          description: "Credit card payment data was successfully deleted"
-        404:
-          description: "Customer could not be found"
+        '204':
+          description: Credit card payment data was successfully deleted
+        '404':
+          description: Customer could not be found
 definitions:
   Customer:
-    type: "object"
+    type: object
     properties:
       uuid:
-        type: "string"
-        format: "uuid"
+        type: string
+        format: uuid
         readOnly: true
       name:
-        type: "string"
+        type: string
         minLength: 3
-        example: "Tom Mayer"
+        example: Tom Mayer
       birthdate:
-        type: "string"
-        format: "date"
+        type: string
+        format: date
     required:
       - name
       - birthdate
   Address:
-    type: "object"
+    type: object
     properties:
       street:
-        type: "string"
+        type: string
         minLength: 3
       number:
-        type: "string"
+        type: string
       zip:
         type: string
-        pattern: "[0-9]{5}"
+        pattern: '[0-9]{5}'
       city:
         type: string
         minLength: 1
-    required: 
+    required:
       - street
       - zip
       - city
   PayPal:
-    type: "object"
+    type: object
     properties:
       email:
-        type: "string"
+        type: string
         minLength: 1
     required:
       - email
   CreditCard:
-    type: "object"
+    type: object
     properties:
       number:
-        type: "string"
+        type: string
         minLength: 1
       validity:
         type: string
-        pattern: "[0-9]{2}/[0-9]{2}"
+        pattern: '[0-9]{2}/[0-9]{2}'
       cvc:
         type: string
-        pattern: "[0-9]{3}"
+        pattern: '[0-9]{3}'
     required:
       - number
       - validity
 parameters:
   customerId:
-    in: "path"
-    name: "id"
-    description: "The id of the customer"
-    type: "string"
-    format: "uuid"
+    in: path
+    name: id
+    description: The id of the customer
+    type: string
+    format: uuid
     required: true
