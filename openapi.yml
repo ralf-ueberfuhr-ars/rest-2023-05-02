@@ -1,10 +1,8 @@
-swagger: '2.0'
+openapi: 3.0.1
 info:
   description: Manage customers and products and sell the products to the customers
   version: 1.0.0
   title: Online Shop API
-host: localhost:8080
-basePath: /api/v1
 tags:
   - name: customers
     description: Manage Customers
@@ -12,47 +10,46 @@ tags:
     description: Manage PayPal payment data
   - name: creditcard
     description: Manage credit card payment data
-schemes:
-  - http
-  - https
+servers:
+  - url: http://localhost:8080/api/v1
+  - url: https://localhost:8080/api/v1
 paths:
   /customers:
     get:
       tags:
         - customers
       summary: Read all customers
-      produces:
-        - application/json
       responses:
         '200':
           description: Customers were read successfully
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Customer'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
     post:
       tags:
         - customers
       summary: Create a customer
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: newCustomer
-          required: true
-          schema:
-            $ref: '#/definitions/Customer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
       responses:
         '201':
           description: Customer was created successfully
-          schema:
-            $ref: '#/definitions/Customer'
           headers:
             Location:
-              type: string
               description: URL to the newly created customer
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
         '400':
           description: Customer is invalid
   /customers/{id}:
@@ -60,15 +57,15 @@ paths:
       tags:
         - customers
       summary: Read a single customer
-      produces:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '200':
           description: Customer was found
-          schema:
-            $ref: '#/definitions/Customer'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
         '404':
           description: Customer could not be found
     delete:
@@ -76,7 +73,7 @@ paths:
         - customers
       summary: Delete a single customer
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '204':
           description: Customer was deleted successfully
@@ -87,32 +84,31 @@ paths:
       tags:
         - customers
       summary: Read the address of the customer
-      produces:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '200':
           description: Customer address was found
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Address'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
         '404':
           description: Customer could not be found or does not have any address assigned
     put:
       tags:
         - customers
       summary: Assign address to the customer
-      consumes:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
-        - in: body
-          name: newAddress
-          required: true
-          schema:
-            $ref: '#/definitions/Address'
+        - $ref: '#/components/parameters/customerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+        required: true
       responses:
         '204':
           description: Address was successfully assigned
@@ -123,17 +119,17 @@ paths:
       tags:
         - paypal
       summary: Read PayPal payment data
-      produces:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '200':
           description: PayPal payment data was found
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/PayPal'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PayPal'
         '404':
           description: >-
             Customer could not be found or does not have any payment data
@@ -142,15 +138,14 @@ paths:
       tags:
         - paypal
       summary: Assign PayPal payment data
-      consumes:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
-        - in: body
-          name: newPayPal
-          required: true
-          schema:
-            $ref: '#/definitions/PayPal'
+        - $ref: '#/components/parameters/customerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayPal'
+        required: true
       responses:
         '204':
           description: PayPal payment data was successfully assigned
@@ -161,7 +156,7 @@ paths:
         - paypal
       summary: Delete PayPal payment data
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '204':
           description: PayPal payment data was successfully deleted
@@ -172,17 +167,17 @@ paths:
       tags:
         - creditcard
       summary: Read credit card payment data
-      produces:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '200':
           description: Credit card payment data was found
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/CreditCard'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditCard'
         '404':
           description: >-
             Customer could not be found or does not have any payment data
@@ -191,15 +186,14 @@ paths:
       tags:
         - creditcard
       summary: Assign Credit card payment data
-      consumes:
-        - application/json
       parameters:
-        - $ref: '#/parameters/customerId'
-        - in: body
-          name: newCreditCard
-          required: true
-          schema:
-            $ref: '#/definitions/CreditCard'
+        - $ref: '#/components/parameters/customerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditCard'
+        required: true
       responses:
         '204':
           description: Credit card payment data was successfully assigned
@@ -210,76 +204,78 @@ paths:
         - creditcard
       summary: Delete credit card payment data
       parameters:
-        - $ref: '#/parameters/customerId'
+        - $ref: '#/components/parameters/customerId'
       responses:
         '204':
           description: Credit card payment data was successfully deleted
         '404':
           description: Customer could not be found
-definitions:
-  Customer:
-    type: object
-    properties:
-      uuid:
+components:
+  schemas:
+    Customer:
+      required:
+        - birthdate
+        - name
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          minLength: 3
+          type: string
+          example: Tom Mayer
+        birthdate:
+          type: string
+          format: date
+    Address:
+      required:
+        - city
+        - street
+        - zip
+      type: object
+      properties:
+        street:
+          minLength: 3
+          type: string
+        number:
+          type: string
+        zip:
+          pattern: '[0-9]{5}'
+          type: string
+        city:
+          minLength: 1
+          type: string
+    PayPal:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          minLength: 1
+          type: string
+    CreditCard:
+      required:
+        - number
+        - validity
+      type: object
+      properties:
+        number:
+          minLength: 1
+          type: string
+        validity:
+          pattern: '[0-9]{2}/[0-9]{2}'
+          type: string
+        cvc:
+          pattern: '[0-9]{3}'
+          type: string
+  parameters:
+    customerId:
+      in: path
+      name: id
+      description: The id of the customer
+      required: true
+      schema:
         type: string
         format: uuid
-        readOnly: true
-      name:
-        type: string
-        minLength: 3
-        example: Tom Mayer
-      birthdate:
-        type: string
-        format: date
-    required:
-      - name
-      - birthdate
-  Address:
-    type: object
-    properties:
-      street:
-        type: string
-        minLength: 3
-      number:
-        type: string
-      zip:
-        type: string
-        pattern: '[0-9]{5}'
-      city:
-        type: string
-        minLength: 1
-    required:
-      - street
-      - zip
-      - city
-  PayPal:
-    type: object
-    properties:
-      email:
-        type: string
-        minLength: 1
-    required:
-      - email
-  CreditCard:
-    type: object
-    properties:
-      number:
-        type: string
-        minLength: 1
-      validity:
-        type: string
-        pattern: '[0-9]{2}/[0-9]{2}'
-      cvc:
-        type: string
-        pattern: '[0-9]{3}'
-    required:
-      - number
-      - validity
-parameters:
-  customerId:
-    in: path
-    name: id
-    description: The id of the customer
-    type: string
-    format: uuid
-    required: true
