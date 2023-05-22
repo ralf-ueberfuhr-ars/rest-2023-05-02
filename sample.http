@@ -1,0 +1,26 @@
+POST http://localhost:80/api/v1/customers
+accept: application/json
+Content-Type: application/json
+
+{
+  "name": "John",
+  "birthdate": "2020-04-04",
+  "interests": [
+    "gardening",
+    "soccer"
+  ]
+}
+
+> {%
+      client.test("Customer created successfully", () => {
+         client.assert(response.status === 201, "Response Status is not 201");
+          const location = response.headers.valueOf("Location");
+          client.log("New customer available under " + location);
+          client.global.set("customer_john", location)
+      });
+ %}
+
+###
+
+GET {{customer_john}}
+accept: application/json
